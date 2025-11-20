@@ -1,0 +1,104 @@
+// Prisma schema for RemoteIQ (replace datasource/provider as needed)
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  role      String
+  verified  Boolean  @default(false)
+  plan      String?
+  companies Company[]
+  jobs      Job[]    @relation("UserJobs")
+  createdAt DateTime @default(now())
+}
+
+model Company {
+  id        String   @id @default(cuid())
+  name      String
+  logo      String?
+  website   String?
+  verified  Boolean  @default(false)
+  jobs      Job[]
+}
+
+model Job {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  company     Company  @relation(fields: [companyId], references: [id])
+  companyId   String
+  description String
+  location    String
+  salaryMin   Int?
+  salaryMax   Int?
+  currency    String?
+  remote      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  poster      User?    @relation("UserJobs", fields: [posterId], references: [id])
+  posterId    String?
+
+  jobTags JobTag[]
+}
+
+model Candidate {
+  id              String   @id @default(cuid())
+  name            String
+  email           String   @unique
+  resumeUrl       String?
+  skills          String[]
+  experience      String
+  vectorEmbedding Float[]
+  aiSummary       String?
+  matches         Match[]
+}
+
+model Match {
+  id          String   @id @default(cuid())
+  job         Job      @relation(fields: [jobId], references: [id])
+  jobId       String
+  candidate   Candidate @relation(fields: [candidateId], references: [id])
+  candidateId String
+  score       Float
+  createdAt   DateTime @default(now())
+}
+
+model Transaction {
+  id         String   @id @default(cuid())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+  amount     Int
+  plan       String
+  status     String
+  razorpayId String?
+  createdAt  DateTime @default(now())
+}
+
+model Category {
+  id    String @id @default(cuid())
+  name  String
+  slug  String @unique
+}
+
+model Tag {
+  id   String   @id @default(cuid())
+  name String   @unique
+  jobs JobTag[]
+}
+
+model JobTag {
+  job   Job @relation(fields: [jobId], references: [id])
+  jobId String
+  tag   Tag @relation(fields: [tagId], references: [id])
+  tagId String
+
+  @@id([jobId, tagId])
+}
