@@ -1,0 +1,48 @@
+{
+  "tokens": {
+    "colors": {
+      "pageBg": { "value": "#FBF9F7" },
+      "surface": { "value": "#FFFFFF" },
+      "surfaceSoft": { "value": "#F7F3ED" },
+      "border": { "value": "#E7E2DD" },
+      "borderDashed": { "value": "#D5CFC7" },
+      "textPrimary": { "value": "#1A1614" },
+      "textSecondary": { "value": "#6B6B6B" },
+      "textInverse": { "value": "#FFFFFF" },
+      "primary": { "value": "#1766E6" },
+      "primaryStrong": { "value": "#1976D2" },
+      "purple": { "value": "#5B3BFF" },
+      "teal": { "value": "#4BC1BA" },
+      "blackCard": { "value": "#050505" }
+    },
+    "radii": {
+      "xl": { "value": "28px" },
+      "lg": { "value": "24px" },
+      "md": { "value": "18px" },
+      "sm": { "value": "14px" },
+      "pill": { "value": "999px" }
+    },
+    "spacing": {
+      "2xs": { "value": "4px" },
+      "xs": { "value": "8px" },
+      "sm": { "value": "12px" },
+      "md": { "value": "16px" },
+      "lg": { "value": "24px" },
+      "xl": { "value": "32px" },
+      "2xl": { "value": "40px" }
+    },
+    "shadows": {
+      "soft": { "value": "0 22px 45px rgba(13, 12, 11, 0.06)" },
+      "hover": { "value": "0 26px 62px rgba(13, 12, 11, 0.12)" },
+      "glowPurple": { "value": "0 18px 48px rgba(91, 59, 255, 0.36)" },
+      "glowBlue": { "value": "0 18px 48px rgba(23, 102, 230, 0.32)" },
+      "glowBlack": { "value": "0 18px 48px rgba(5, 5, 5, 0.42)" }
+    },
+    "fonts": {
+      "sans": {
+        "value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+      },
+      "caveat": { "value": "'Caveat', cursive" }
+    }
+  }
+}
